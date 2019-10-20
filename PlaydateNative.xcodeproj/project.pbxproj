@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		50CD52BE235D107A00B6B51D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52BC235D107A00B6B51D /* main.cpp */; };
+		50CD52BF235D107A00B6B51D /* Application.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52BD235D107A00B6B51D /* Application.h */; };
+		50CD52CB235D109300B6B51D /* mini3d.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52C0235D109200B6B51D /* mini3d.c */; };
+		50CD52CC235D109300B6B51D /* 3dmath.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C1235D109200B6B51D /* 3dmath.h */; };
+		50CD52CD235D109300B6B51D /* mini3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C2235D109300B6B51D /* mini3d.h */; };
+		50CD52CE235D109300B6B51D /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C3235D109300B6B51D /* scene.h */; };
+		50CD52CF235D109300B6B51D /* shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C4235D109300B6B51D /* shape.h */; };
+		50CD52D0235D109300B6B51D /* 3dmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52C5235D109300B6B51D /* 3dmath.c */; };
+		50CD52D1235D109300B6B51D /* scene.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52C6235D109300B6B51D /* scene.c */; };
+		50CD52D2235D109300B6B51D /* shape.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52C7235D109300B6B51D /* shape.c */; };
+		50CD52D3235D109300B6B51D /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52C8235D109300B6B51D /* render.c */; };
+		50CD52D4235D109300B6B51D /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C9235D109300B6B51D /* render.h */; };
+		50CD52D5235D109300B6B51D /* Icosohedron.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52CA235D109300B6B51D /* Icosohedron.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		50CD52B3235D0FC900B6B51D /* libPlaydateNative.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libPlaydateNative.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CD52BC235D107A00B6B51D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = PlaydateNative/main.cpp; sourceTree = SOURCE_ROOT; };
+		50CD52BD235D107A00B6B51D /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = PlaydateNative/Application.h; sourceTree = SOURCE_ROOT; };
+		50CD52C0235D109200B6B51D /* mini3d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mini3d.c; sourceTree = "<group>"; };
+		50CD52C1235D109200B6B51D /* 3dmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 3dmath.h; sourceTree = "<group>"; };
+		50CD52C2235D109300B6B51D /* mini3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mini3d.h; sourceTree = "<group>"; };
+		50CD52C3235D109300B6B51D /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
+		50CD52C4235D109300B6B51D /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
+		50CD52C5235D109300B6B51D /* 3dmath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = 3dmath.c; sourceTree = "<group>"; };
+		50CD52C6235D109300B6B51D /* scene.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scene.c; sourceTree = "<group>"; };
+		50CD52C7235D109300B6B51D /* shape.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shape.c; sourceTree = "<group>"; };
+		50CD52C8235D109300B6B51D /* render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = render.c; sourceTree = "<group>"; };
+		50CD52C9235D109300B6B51D /* render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
+		50CD52CA235D109300B6B51D /* Icosohedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Icosohedron.h; sourceTree = "<group>"; };
+		50CD52D9235D10E900B6B51D /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		50CD52DC235D12BF00B6B51D /* SampleApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleApplication.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50CD52B1235D0FC900B6B51D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50CD52AA235D0FC900B6B51D = {
+			isa = PBXGroup;
+			children = (
+				50CD52D9235D10E900B6B51D /* Config.h */,
+				50CD52D7235D10AD00B6B51D /* Experiments */,
+				50CD52BB235D106D00B6B51D /* PlaydateNative */,
+				50CD52D6235D109600B6B51D /* Mini 3D */,
+				50CD52B4235D0FC900B6B51D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50CD52B4235D0FC900B6B51D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50CD52B3235D0FC900B6B51D /* libPlaydateNative.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50CD52BB235D106D00B6B51D /* PlaydateNative */ = {
+			isa = PBXGroup;
+			children = (
+				50CD52BD235D107A00B6B51D /* Application.h */,
+				50CD52BC235D107A00B6B51D /* main.cpp */,
+			);
+			path = PlaydateNative;
+			sourceTree = "<group>";
+		};
+		50CD52D6235D109600B6B51D /* Mini 3D */ = {
+			isa = PBXGroup;
+			children = (
+				50CD52C5235D109300B6B51D /* 3dmath.c */,
+				50CD52C1235D109200B6B51D /* 3dmath.h */,
+				50CD52C0235D109200B6B51D /* mini3d.c */,
+				50CD52C2235D109300B6B51D /* mini3d.h */,
+				50CD52C8235D109300B6B51D /* render.c */,
+				50CD52C9235D109300B6B51D /* render.h */,
+				50CD52C6235D109300B6B51D /* scene.c */,
+				50CD52C3235D109300B6B51D /* scene.h */,
+				50CD52C7235D109300B6B51D /* shape.c */,
+				50CD52C4235D109300B6B51D /* shape.h */,
+			);
+			path = "Mini 3D";
+			sourceTree = "<group>";
+		};
+		50CD52D7235D10AD00B6B51D /* Experiments */ = {
+			isa = PBXGroup;
+			children = (
+				50CD52DB235D12AC00B6B51D /* Sample App */,
+				50CD52D8235D10B600B6B51D /* Icosohedron */,
+			);
+			path = Experiments;
+			sourceTree = "<group>";
+		};
+		50CD52D8235D10B600B6B51D /* Icosohedron */ = {
+			isa = PBXGroup;
+			children = (
+				50CD52CA235D109300B6B51D /* Icosohedron.h */,
+			);
+			path = Icosohedron;
+			sourceTree = "<group>";
+		};
+		50CD52DB235D12AC00B6B51D /* Sample App */ = {
+			isa = PBXGroup;
+			children = (
+				50CD52DC235D12BF00B6B51D /* SampleApplication.h */,
+			);
+			path = "Sample App";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		50CD52AF235D0FC900B6B51D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50CD52BF235D107A00B6B51D /* Application.h in Headers */,
+				50CD52CC235D109300B6B51D /* 3dmath.h in Headers */,
+				50CD52D4235D109300B6B51D /* render.h in Headers */,
+				50CD52CD235D109300B6B51D /* mini3d.h in Headers */,
+				50CD52CE235D109300B6B51D /* scene.h in Headers */,
+				50CD52D5235D109300B6B51D /* Icosohedron.h in Headers */,
+				50CD52CF235D109300B6B51D /* shape.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		50CD52B2235D0FC900B6B51D /* PlaydateNative */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50CD52B7235D0FC900B6B51D /* Build configuration list for PBXNativeTarget "PlaydateNative" */;
+			buildPhases = (
+				50CD52AF235D0FC900B6B51D /* Headers */,
+				50CD52B0235D0FC900B6B51D /* Sources */,
+				50CD52B1235D0FC900B6B51D /* Frameworks */,
+				50CD52DA235D128200B6B51D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlaydateNative;
+			productName = PlaydateNative;
+			productReference = 50CD52B3235D0FC900B6B51D /* libPlaydateNative.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50CD52AB235D0FC900B6B51D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = "Max Weisel";
+				TargetAttributes = {
+					50CD52B2235D0FC900B6B51D = {
+						CreatedOnToolsVersion = 11.1;
+					};
+				};
+			};
+			buildConfigurationList = 50CD52AE235D0FC900B6B51D /* Build configuration list for PBXProject "PlaydateNative" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50CD52AA235D0FC900B6B51D;
+			productRefGroup = 50CD52B4235D0FC900B6B51D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50CD52B2235D0FC900B6B51D /* PlaydateNative */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50CD52DA235D128200B6B51D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp \"${TARGET_BUILD_DIR}/${EXECUTABLE_NAME}\" Source/pdex.dylib\ntouch Source/pdex.bin\nmake pdc\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50CD52B0235D0FC900B6B51D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50CD52D0235D109300B6B51D /* 3dmath.c in Sources */,
+				50CD52D3235D109300B6B51D /* render.c in Sources */,
+				50CD52BE235D107A00B6B51D /* main.cpp in Sources */,
+				50CD52D1235D109300B6B51D /* scene.c in Sources */,
+				50CD52CB235D109300B6B51D /* mini3d.c in Sources */,
+				50CD52D2235D109300B6B51D /* shape.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		50CD52B5235D0FC900B6B51D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"PLAYDATE_SIMULATOR=1",
+					"TARGET_EXTENSION=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PLAYDATE_C_API_PATH)";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PLAYDATE_C_API_PATH = "/Users/max/Documents/PlaydateSDK-build-Release/C_API/";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		50CD52B6235D0FC900B6B51D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PLAYDATE_C_API_PATH)";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PLAYDATE_C_API_PATH = "/Users/max/Documents/PlaydateSDK-build-Release/C_API/";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		50CD52B8235D0FC900B6B51D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		50CD52B9235D0FC900B6B51D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50CD52AE235D0FC900B6B51D /* Build configuration list for PBXProject "PlaydateNative" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50CD52B5235D0FC900B6B51D /* Debug */,
+				50CD52B6235D0FC900B6B51D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50CD52B7235D0FC900B6B51D /* Build configuration list for PBXNativeTarget "PlaydateNative" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50CD52B8235D0FC900B6B51D /* Debug */,
+				50CD52B9235D0FC900B6B51D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50CD52AB235D0FC900B6B51D /* Project object */;
+}
