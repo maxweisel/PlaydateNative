@@ -1,5 +1,5 @@
-name=Hello World C
-author=Dave Hayden
-description=A small demo of the C API
-bundleID=com.panic.hellocapi
+name=PlaydateNative
+author=Max Weisel
+description=Max's Native Experiments
+bundleID=com.maxweisel.playdatenative
 imagePath=

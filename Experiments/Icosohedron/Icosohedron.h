@@ -8,10 +8,11 @@
 
 #pragma once
 
-#include "Application.h"
+#include "Playdate.h"
+
+using namespace Playdate;
 
 extern "C" {
-#include "pd_api.h"
 #include "mini3d.h"
 #include "scene.h"
 #include "shape.h"
@@ -19,14 +20,11 @@ extern "C" {
 #include "3dmath.h"
 }
 
-#define max_malloc(s) pd->system->realloc(NULL, (s))
-#define max_free(ptr) pd->system->realloc((ptr), 0)
-
 class Icosohedron : public Application {
 public:
-    Icosohedron(PlaydateAPI *pd) : Application(pd) {
+    Icosohedron() {
         // Configure 3D renderer
-        mini3d_setRealloc(pd->system->realloc);
+        mini3d_setRealloc(System::realloc);
         
         // Create points
         float p = (sqrtf(5.0f) - 1.0f) / 2.0f;
@@ -89,8 +87,8 @@ public:
     
     void Update() override {
         // Clear screen
-        pd->graphics->clear(kColorWhite);
-        
+        Graphics::Clear(kColorWhite);
+
         // Rotate scene
         _rotation += 0.02f;
         
@@ -100,10 +98,10 @@ public:
         Scene3DNode_setTransform(rootNode, &rotationMatrix);
         
         // Draw
-        Scene3D_draw(&_scene, pd->graphics->getFrame(), LCD_ROWSIZE);
+        Scene3D_draw(&_scene, Graphics::GetFrame(), LCD_ROWSIZE);
         
         // Mark all rows ready to update
-        pd->graphics->markUpdatedRows(0, LCD_ROWS-1);
+        Graphics::MarkUpdatedRows(0, LCD_ROWS-1);
     }
     
     Matrix3D CreateRotationMatrix(float rotation) {

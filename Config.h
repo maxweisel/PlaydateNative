@@ -17,8 +17,17 @@
  
  */
 
-#include "SampleApplication.h"
-#include "Icosohedron.h"
-
+//#include "Experiments/Sample App/SampleApplication.h"
 //#define APPLICATION_CLASS SampleApplication
-#define APPLICATION_CLASS Icosohedron
+
+//#include "Experiments/Icosohedron/Icosohedron.h"
+//#define APPLICATION_CLASS Icosohedron
+
+//#include "Experiments/Tests/TestsApplication.h"
+//#define APPLICATION_CLASS TestsApplication
+
+//#include "Experiments/Music Box/MusicBox.h"
+//#define APPLICATION_CLASS MusicBox
+
+#include "Experiments/Phonograph/Phonograph.h"
+#define APPLICATION_CLASS Phonograph

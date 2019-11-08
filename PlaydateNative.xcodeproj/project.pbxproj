@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		50CD52BE235D107A00B6B51D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52BC235D107A00B6B51D /* main.cpp */; };
-		50CD52BF235D107A00B6B51D /* Application.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52BD235D107A00B6B51D /* Application.h */; };
 		50CD52CB235D109300B6B51D /* mini3d.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52C0235D109200B6B51D /* mini3d.c */; };
 		50CD52CC235D109300B6B51D /* 3dmath.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C1235D109200B6B51D /* 3dmath.h */; };
 		50CD52CD235D109300B6B51D /* mini3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C2235D109300B6B51D /* mini3d.h */; };
@@ -20,12 +19,15 @@
 		50CD52D3235D109300B6B51D /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CD52C8235D109300B6B51D /* render.c */; };
 		50CD52D4235D109300B6B51D /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52C9235D109300B6B51D /* render.h */; };
 		50CD52D5235D109300B6B51D /* Icosohedron.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CD52CA235D109300B6B51D /* Icosohedron.h */; };
+		50D68E98235FC59B0008C5C1 /* Playdate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D68E96235FC59B0008C5C1 /* Playdate.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		50CD52B3235D0FC900B6B51D /* libPlaydateNative.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libPlaydateNative.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		50CD52BC235D107A00B6B51D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = PlaydateNative/main.cpp; sourceTree = SOURCE_ROOT; };
-		50CD52BD235D107A00B6B51D /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = PlaydateNative/Application.h; sourceTree = SOURCE_ROOT; };
+		50642A0C2373A19200A3AE8F /* TestsApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestsApplication.h; sourceTree = "<group>"; };
+		50642A0F2373A9A000A3AE8F /* Playdate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Playdate.h; sourceTree = "<group>"; };
+		50642A112374F6D500A3AE8F /* Phonograph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Phonograph.h; sourceTree = "<group>"; };
+		50CD52B3235D0FC900B6B51D /* libPlaydateNative Simulator.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libPlaydateNative Simulator.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CD52BC235D107A00B6B51D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		50CD52C0235D109200B6B51D /* mini3d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mini3d.c; sourceTree = "<group>"; };
 		50CD52C1235D109200B6B51D /* 3dmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 3dmath.h; sourceTree = "<group>"; };
 		50CD52C2235D109300B6B51D /* mini3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mini3d.h; sourceTree = "<group>"; };
@@ -39,6 +41,8 @@
 		50CD52CA235D109300B6B51D /* Icosohedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Icosohedron.h; sourceTree = "<group>"; };
 		50CD52D9235D10E900B6B51D /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		50CD52DC235D12BF00B6B51D /* SampleApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleApplication.h; sourceTree = "<group>"; };
+		50CD52EE235D1C0400B6B51D /* MusicBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicBox.h; sourceTree = "<group>"; };
+		50D68E96235FC59B0008C5C1 /* Playdate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Playdate.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,12 +56,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50642A0B2373A17800A3AE8F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				50642A0C2373A19200A3AE8F /* TestsApplication.h */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		50642A0E2373A97400A3AE8F /* Playdate */ = {
+			isa = PBXGroup;
+			children = (
+				50642A0F2373A9A000A3AE8F /* Playdate.h */,
+				50D68E96235FC59B0008C5C1 /* Playdate.cpp */,
+			);
+			path = Playdate;
+			sourceTree = "<group>";
+		};
+		50642A102374F6B800A3AE8F /* Phonograph */ = {
+			isa = PBXGroup;
+			children = (
+				50642A112374F6D500A3AE8F /* Phonograph.h */,
+			);
+			path = Phonograph;
+			sourceTree = "<group>";
+		};
 		50CD52AA235D0FC900B6B51D = {
 			isa = PBXGroup;
 			children = (
 				50CD52D9235D10E900B6B51D /* Config.h */,
 				50CD52D7235D10AD00B6B51D /* Experiments */,
-				50CD52BB235D106D00B6B51D /* PlaydateNative */,
+				50642A0E2373A97400A3AE8F /* Playdate */,
+				50CD52BC235D107A00B6B51D /* main.cpp */,
 				50CD52D6235D109600B6B51D /* Mini 3D */,
 				50CD52B4235D0FC900B6B51D /* Products */,
 			);
@@ -66,18 +96,9 @@
 		50CD52B4235D0FC900B6B51D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				50CD52B3235D0FC900B6B51D /* libPlaydateNative.dylib */,
+				50CD52B3235D0FC900B6B51D /* libPlaydateNative Simulator.dylib */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		50CD52BB235D106D00B6B51D /* PlaydateNative */ = {
-			isa = PBXGroup;
-			children = (
-				50CD52BD235D107A00B6B51D /* Application.h */,
-				50CD52BC235D107A00B6B51D /* main.cpp */,
-			);
-			path = PlaydateNative;
 			sourceTree = "<group>";
 		};
 		50CD52D6235D109600B6B51D /* Mini 3D */ = {
@@ -102,6 +123,9 @@
 			children = (
 				50CD52DB235D12AC00B6B51D /* Sample App */,
 				50CD52D8235D10B600B6B51D /* Icosohedron */,
+				50642A0B2373A17800A3AE8F /* Tests */,
+				50CD52ED235D1BF700B6B51D /* Music Box */,
+				50642A102374F6B800A3AE8F /* Phonograph */,
 			);
 			path = Experiments;
 			sourceTree = "<group>";
@@ -122,6 +146,14 @@
 			path = "Sample App";
 			sourceTree = "<group>";
 		};
+		50CD52ED235D1BF700B6B51D /* Music Box */ = {
+			isa = PBXGroup;
+			children = (
+				50CD52EE235D1C0400B6B51D /* MusicBox.h */,
+			);
+			path = "Music Box";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -129,7 +161,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50CD52BF235D107A00B6B51D /* Application.h in Headers */,
 				50CD52CC235D109300B6B51D /* 3dmath.h in Headers */,
 				50CD52D4235D109300B6B51D /* render.h in Headers */,
 				50CD52CD235D109300B6B51D /* mini3d.h in Headers */,
@@ -142,9 +173,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		50CD52B2235D0FC900B6B51D /* PlaydateNative */ = {
+		50CD52B2235D0FC900B6B51D /* PlaydateNative Simulator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50CD52B7235D0FC900B6B51D /* Build configuration list for PBXNativeTarget "PlaydateNative" */;
+			buildConfigurationList = 50CD52B7235D0FC900B6B51D /* Build configuration list for PBXNativeTarget "PlaydateNative Simulator" */;
 			buildPhases = (
 				50CD52AF235D0FC900B6B51D /* Headers */,
 				50CD52B0235D0FC900B6B51D /* Sources */,
@@ -155,9 +186,9 @@
 			);
 			dependencies = (
 			);
-			name = PlaydateNative;
+			name = "PlaydateNative Simulator";
 			productName = PlaydateNative;
-			productReference = 50CD52B3235D0FC900B6B51D /* libPlaydateNative.dylib */;
+			productReference = 50CD52B3235D0FC900B6B51D /* libPlaydateNative Simulator.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -187,7 +218,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				50CD52B2235D0FC900B6B51D /* PlaydateNative */,
+				50CD52B2235D0FC900B6B51D /* PlaydateNative Simulator */,
 			);
 		};
 /* End PBXProject section */
@@ -222,6 +253,7 @@
 				50CD52BE235D107A00B6B51D /* main.cpp in Sources */,
 				50CD52D1235D109300B6B51D /* scene.c in Sources */,
 				50CD52CB235D109300B6B51D /* mini3d.c in Sources */,
+				50D68E98235FC59B0008C5C1 /* Playdate.cpp in Sources */,
 				50CD52D2235D109300B6B51D /* shape.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,8 +267,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -297,8 +329,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -380,7 +412,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50CD52B7235D0FC900B6B51D /* Build configuration list for PBXNativeTarget "PlaydateNative" */ = {
+		50CD52B7235D0FC900B6B51D /* Build configuration list for PBXNativeTarget "PlaydateNative Simulator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50CD52B8235D0FC900B6B51D /* Debug */,

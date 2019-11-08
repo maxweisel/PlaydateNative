@@ -8,11 +8,13 @@
 
 #pragma once
 
-#include "Application.h"
+#include "Playdate.h"
+
+using namespace Playdate;
 
 class SampleApplication : public Application {
 public:
-    SampleApplication(PlaydateAPI *pd) : Application(pd) {
+    SampleApplication() {
         // Set up
         
     }
@@ -26,10 +28,11 @@ public:
         // Update
         
         // Clear screen
-        pd->graphics->clear(kColorWhite);
+        Graphics::Clear(kColorWhite);
         
         // Draw FPS indicator
-        pd->system->drawFPS(10, 10);
+        System::DrawFPS(10, 10);
+        
     }
 private:
     

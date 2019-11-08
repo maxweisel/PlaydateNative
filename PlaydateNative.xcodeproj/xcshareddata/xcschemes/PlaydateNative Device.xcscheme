@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50CD52B2235D0FC900B6B51D"
-               BuildableName = "libPlaydateNative.dylib"
-               BlueprintName = "PlaydateNative"
+               BlueprintIdentifier = "502364ED235D2356002DDABF"
+               BuildableName = "PlaydateNative Device"
+               BlueprintName = "PlaydateNative Device"
                ReferencedContainer = "container:PlaydateNative.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,26 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <PathRunnable
-         runnableDebuggingMode = "0"
-         BundleIdentifier = "com.panic.Playdate-Simulator"
-         FilePath = "/Users/max/Documents/PlaydateSDK-build-Release/bin/Playdate Simulator.app">
-      </PathRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50CD52B2235D0FC900B6B51D"
-            BuildableName = "libPlaydateNative.dylib"
-            BlueprintName = "PlaydateNative"
-            ReferencedContainer = "container:PlaydateNative.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "&quot;${PROJECT_DIR}/PlaydateNative.pdx&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -70,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50CD52B2235D0FC900B6B51D"
-            BuildableName = "libPlaydateNative.dylib"
-            BlueprintName = "PlaydateNative"
+            BlueprintIdentifier = "502364ED235D2356002DDABF"
+            BuildableName = "PlaydateNative Device"
+            BlueprintName = "PlaydateNative Device"
             ReferencedContainer = "container:PlaydateNative.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

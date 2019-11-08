@@ -3,3 +3,9 @@
 
 # User settings
 xcuserdata/
+
+# Playdate
+build/
+PlaydateNative.pdx/
+Source/pdex.bin
+Source/pdex.dylib
