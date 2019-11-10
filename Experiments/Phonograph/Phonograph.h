@@ -11,16 +11,22 @@
 // TODO: This is gross. Why doesn't "Playdate/Playdate.h" work?
 #include "../../Playdate/Playdate.h"
 
+#include <math.h>
+
 using namespace Playdate;
 
-#define BUFFER_SIZE (1024*10)
+#define FRAME_SIZE 1024
+#define NUM_FRAMES 128
+#define BUFFER_SIZE (FRAME_SIZE*NUM_FRAMES)
 #define MIN(x, y) (x < y ? x : y)
 
 class Phonograph : public Application {
 public:
-    Phonograph() : _recording(false), _cursor(0), _previousCursor(0), _crankAngle(System::GetCrankAngle()) {
+    Phonograph() : _recording(false), _cursor(0), _crankAngle(System::GetCrankAngle()), _crankSpeed(0.0f) {
+        // Clear the buffer
         memset(_audioBuffer, 0, BUFFER_SIZE*sizeof(int16_t));
         
+        // Set audio callbacks
         Audio::AddSource(AudioCallback, this, 1);
         Audio::SetMicCallback(MicrophoneCallback, this);
     }
@@ -33,12 +39,9 @@ public:
             return 1;
         }
         
-        // Record audio
-        int startReadPosition = (int)_previousCursor;
-        int   endReadPosition = (int)_cursor;
+        int startReadPosition = _cursor;
+        int   endReadPosition = _cursor = _cursor+_crankSpeed*length;
         int      readLength   = endReadPosition - startReadPosition;
-
-        _previousCursor = _cursor;
         
         int startWritePosition = 0;
         int   endWritePosition = length;
@@ -49,7 +52,7 @@ public:
             int    readPosition = startReadPosition + position*readLength;
             int   writePosition = startWritePosition + i;
             
-            left[writePosition] = right[writePosition] = _audioBuffer[readPosition];
+            left[writePosition] = right[writePosition] = _audioBuffer[BufferWrap(readPosition, BUFFER_SIZE)];
         }
         
         return 1;
@@ -64,10 +67,9 @@ public:
         // Record audio
         int channels = 2; // Microphone is stereo interleaved, but we only want the first channel.
         
-        int startWritePosition = (int)_previousCursor;
-        int   endWritePosition = (int)_cursor;
+        int startWritePosition = _cursor;
+        int   endWritePosition = _cursor = _cursor+_crankSpeed*length;
         int      writeLength   = endWritePosition - startWritePosition;
-        _previousCursor = _cursor;
         
         int startReadPosition = 0;
         int   endReadPosition = length;
@@ -78,7 +80,7 @@ public:
             int    readPosition = startReadPosition + position*readLength;
             int   writePosition = startWritePosition + i;
             
-            _audioBuffer[writePosition] = data[readPosition*channels];
+            _audioBuffer[BufferWrap(writePosition, BUFFER_SIZE)] = data[readPosition*channels];
         }
                 
         return 1;
@@ -97,13 +99,16 @@ public:
         if (_recording)
             System::DrawFPS(10, 10);
         
-        // Update position
+        // Calculate crank delta since the last frame
         float crankAngle = System::GetCrankAngle();
         float delta = crankAngle-_crankAngle;
         while (delta >  180.0f) delta -= 360.0f;
         while (delta < -180.0f) delta += 360.0f;
         _crankAngle = crankAngle;
-        _cursor += delta/360.0f*BUFFER_SIZE;
+        
+        // Lerp towards target crank speed
+        float targetCrankSpeed = delta/360.0f * 10.0f;
+        _crankSpeed = Lerp(_crankSpeed, targetCrankSpeed, 0.05f);
         
         // Draw circle to represent buffer
         DrawCenteredCircle(0, 360, 4, 20);
@@ -123,11 +128,32 @@ public:
         int paddingY = (screenHeight - diameter)/2;
         Graphics::DrawEllipse(NULL, NULL, paddingX, paddingY, diameter, diameter, width, startAngle, endAngle, kColorBlack, LCDMakeRect(0,0,0,0));
     }
+    
+    static float Lerp(float a, float b, float t) {
+        // Lerp
+        float range = b - a;
+        float value = a + t*range;
+        
+        // Clamp
+        float min = a < b ? a : b;
+        float max = a > b ? a : b;
+        if (value < min) value = min;
+        if (value > max) value = max;
+        
+        return value;
+    }
+    
+    // Treat a buffer as a cirular buffer by wrapping the index if it goes off either end of the buffer
+    static int BufferWrap(int index, int length) {
+        int value = index % length;
+        if (value < 0) value += length;
+        return value;
+    }
 private:
     bool    _recording;
     int16_t _audioBuffer[BUFFER_SIZE];
     float   _cursor;
-    float   _previousCursor;
     
     float _crankAngle;
+    float _crankSpeed;
 };
