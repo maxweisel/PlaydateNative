@@ -7,13 +7,13 @@
 //
 
 #include <memory>
+#include "Config.h"
+#include "Playdate/Playdate.h"
 
 using namespace std;
 
 extern "C" {
     #include "pd_api.h"
-    #include "Config.h"
-    #include "Playdate/Playdate.h"
     
     static unique_ptr<APPLICATION_CLASS> __application;
 

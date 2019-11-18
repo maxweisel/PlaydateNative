@@ -26,64 +26,57 @@ public:
         // Clear the buffer
         memset(_audioBuffer, 0, BUFFER_SIZE*sizeof(int16_t));
         
-        // Set audio callbacks
-        Audio::AddSource(AudioCallback, this, 1);
-        Audio::SetMicCallback(MicrophoneCallback, this);
-    }
-    
-    static int AudioCallback(void *context, int16_t *left, int16_t *right, int length) { return reinterpret_cast<Phonograph *>(context)->AudioCallback(left, right, length); }
-    int AudioCallback(int16_t *left, int16_t *right, int length) {
-        if (_recording) {
-            for (int i = 0; i < length; i++)
-                left[i] = right[i] = 0;
-            return 1;
-        }
-        
-        int startReadPosition = _cursor;
-        int   endReadPosition = _cursor = _cursor+_crankSpeed*length;
-        int      readLength   = endReadPosition - startReadPosition;
-        
-        int startWritePosition = 0;
-        int   endWritePosition = length;
-        int      writeLength   = endWritePosition - startWritePosition;
-        
-        for (int i = 0; i < writeLength; i++) {
-            float      position = ((float)i)/writeLength;
-            int    readPosition = startReadPosition + position*readLength;
-            int   writePosition = startWritePosition + i;
+        // Recording
+        Audio::SetMicrophoneCallback([this](int16_t *audioData, int audioDataLength, int channels) {
+            if (!_recording) {
+                return;
+            }
             
-            left[writePosition] = right[writePosition] = _audioBuffer[BufferWrap(readPosition, BUFFER_SIZE)];
-        }
-        
-        return 1;
-    }
-
-    static int MicrophoneCallback(void *context, int16_t *data, int length) { return reinterpret_cast<Phonograph *>(context)->MicrophoneCallback(data, length); }
-    int MicrophoneCallback(int16_t *data, int length) {
-        if (!_recording) {
-            return 1;
-        }
-        
-        // Record audio
-        int channels = 2; // Microphone is stereo interleaved, but we only want the first channel.
-        
-        int startWritePosition = _cursor;
-        int   endWritePosition = _cursor = _cursor+_crankSpeed*length;
-        int      writeLength   = endWritePosition - startWritePosition;
-        
-        int startReadPosition = 0;
-        int   endReadPosition = length;
-        int      readLength   = endReadPosition - startReadPosition;
-        
-        for (int i = 0; i < writeLength; i++) {
-            float      position = ((float)i)/writeLength;
-            int    readPosition = startReadPosition + position*readLength;
-            int   writePosition = startWritePosition + i;
+            // Audio input callback is interleaved, but we only want the first channel.
+            int singleChannelLength = audioDataLength/channels;
             
-            _audioBuffer[BufferWrap(writePosition, BUFFER_SIZE)] = data[readPosition*channels];
-        }
+            // Record audio
+            int startWritePosition = _cursor;
+            int   endWritePosition = _cursor = _cursor+_crankSpeed*singleChannelLength;
+            int      writeLength   = endWritePosition - startWritePosition;
+            
+            int startReadPosition = 0;
+            int   endReadPosition = singleChannelLength;
+            int      readLength   = endReadPosition - startReadPosition;
+            
+            for (int i = 0; i < writeLength; i++) {
+                float      position = ((float)i)/writeLength;
+                int    readPosition = startReadPosition + position*readLength;
+                int   writePosition = startWritePosition + i;
                 
-        return 1;
+                _audioBuffer[BufferWrap(writePosition, BUFFER_SIZE)] = audioData[readPosition*channels];
+            }
+        });
+        
+        // Playback
+        Audio::SetSpeakerCallback([this](int16_t *leftData, int16_t *rightData, int audioDataLength) {
+            if (_recording) {
+                for (int i = 0; i < audioDataLength; i++)
+                    leftData[i] = rightData[i] = 0;
+                return;
+            }
+            
+            int startReadPosition = _cursor;
+            int   endReadPosition = _cursor = _cursor+_crankSpeed*audioDataLength;
+            int      readLength   = endReadPosition - startReadPosition;
+            
+            int startWritePosition = 0;
+            int   endWritePosition = audioDataLength;
+            int      writeLength   = endWritePosition - startWritePosition;
+            
+            for (int i = 0; i < writeLength; i++) {
+                float      position = ((float)i)/writeLength;
+                int    readPosition = startReadPosition + position*readLength;
+                int   writePosition = startWritePosition + i;
+                
+                leftData[writePosition] = rightData[writePosition] = _audioBuffer[BufferWrap(readPosition, BUFFER_SIZE)];
+            }
+        });
     }
     
     void Update() override {
@@ -126,7 +119,7 @@ public:
         int diameter = MIN(screenWidth, screenHeight)-(padding*2);
         int paddingX = (screenWidth  - diameter)/2;
         int paddingY = (screenHeight - diameter)/2;
-        Graphics::DrawEllipse(NULL, NULL, paddingX, paddingY, diameter, diameter, width, startAngle, endAngle, kColorBlack, LCDMakeRect(0,0,0,0));
+        Graphics::DrawEllipse(paddingX, paddingY, diameter, diameter, width, startAngle, endAngle, kColorBlack, LCDMakeRect(0,0,0,0));
     }
     
     static float Lerp(float a, float b, float t) {

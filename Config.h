@@ -29,5 +29,11 @@
 //#include "Experiments/Music Box/MusicBox.h"
 //#define APPLICATION_CLASS MusicBox
 
-#include "Experiments/Phonograph/Phonograph.h"
-#define APPLICATION_CLASS Phonograph
+//#include "Experiments/Phonograph/Phonograph.h"
+//#define APPLICATION_CLASS Phonograph
+
+#include "Experiments/Copy Cat/CopyCat.h"
+#define APPLICATION_CLASS CopyCat
+
+//#include "Experiments/Labyrinth/Labyrinth.h"
+//#define APPLICATION_CLASS Labyrinth

@@ -8,31 +8,29 @@
 
 #pragma once
 
-// TODO: Move all method implementations to cpp file so pd_api isn't included when the C++ API is included.
 #include "pd_api.h"
-
 #include <memory>
+#include <functional>
 
-// TODO: Can we move this inside of the namespace?
+// TODO: Remove this from the header so it's private at some point
 extern PlaydateAPI *_pd;
+void SetPlaydateAPI(PlaydateAPI *pd);
 
 namespace Playdate {
-    void SetPlaydateAPI(PlaydateAPI *pd) { _pd = pd; }
-    
-    namespace System {
-        void *malloc(size_t size) { return _pd->system->realloc(NULL, size); }
-        void *realloc(void *pointer, size_t size) { return _pd->system->realloc(pointer, size); }
-        void  free(void *pointer) { _pd->system->realloc(pointer, 0); }
+    class System {
+    public:
+        static void *malloc(size_t size);
+        static void *realloc(void *pointer, size_t size);
+        static void  free(void *pointer);
         
-        void SetUpdateCallback(PDCallbackFunction *update, void *userData) { _pd->system->setUpdateCallback(update, userData); }
-        void ClearUpdateCallback() { _pd->system->setUpdateCallback(NULL, NULL); }
+        static void SetUpdateCallback(PDCallbackFunction *update, void *userData);
+        static void ClearUpdateCallback();
         
-        // TODO: Implement
-        void GetButtonState(PDButtons *current, PDButtons *pushed, PDButtons *released) { _pd->system->getButtonState(current, pushed, released); }
+        static void GetButtonState(PDButtons *current, PDButtons *pushed, PDButtons *released);
         //void (*setPeripheralsEnabled)(PDPeripherals mask);
         //void (*getAccelerometer)(float* accelerometer, float* magnetometer);
         //float (*getCrankChange)(void);
-        float GetCrankAngle() { return _pd->system->getCrankAngle(); }
+        static float GetCrankAngle();
         //void (*logToConsole)(char* fmt, ...);
         //void (*error)(const char* fmt, ...);
         //int (*formatString)(char **ret, const char *fmt, ...);
@@ -40,44 +38,49 @@ namespace Playdate {
         //PDLanguage (*getLanguage)(void);
         //unsigned int (*getCurrentTimeMilliseconds)(void);
         //unsigned int (*getSecondsSinceEpoch)(unsigned int *milliseconds);
-        void DrawFPS(int x, int y) { _pd->system->drawFPS(x, y); }
-    }
+        static void DrawFPS(int x, int y);
+    };
     
     // File
     // TODO: Implement
     
     // Graphics
-    namespace Graphics {
-        // TODO: Implement
-        uint8_t *GetFrame() { return _pd->graphics->getFrame(); }; // row stride = LCD_ROWSIZE
+    class Graphics {
+    public:
+        class Image;
+        
+        static uint8_t *GetFrame(); // row stride = LCD_ROWSIZE
         //uint8_t* (*getDisplayFrame)(void); // row stride = LCD_ROWSIZE
         //LCDBitmap* (*getDebugImage)(void); // valid in simulator only, function is NULL on device
         //LCDBitmap* (*getFrameBufferBitmap)(void);
         
-        void MarkUpdatedRows(int start, int end) { _pd->graphics->markUpdatedRows(start, end); }
+        static void MarkUpdatedRows(int start, int end);
         //void (*display)(void);
     
         //void (*setDrawOffset)(int dx, int dy);
         
-        //LCDBitmap* (*newBitmap)(int width, int height, LCDColor bgcolor);
-        //void (*freeBitmap)(LCDBitmap*);
-        //LCDBitmap* (*loadBitmap)(const char* path, const char** outerr);
-        //LCDBitmap* (*copyBitmap)(LCDBitmap* bitmap);
-        //void (*loadIntoBitmap)(const char* path, LCDBitmap* bitmap, const char** outerr);
-        //void (*getBitmapData)(LCDBitmap* bitmap, int* width, int* height, int* rowbytes, int* hasmask, uint8_t** data);
         //LCDBitmapTable* (*loadBitmapTable)(const char* path, const char** outerr);
         //LCDBitmap* (*getTableBitmap)(LCDBitmapTable* table, int idx);
-        void Clear(LCDSolidColor color) { _pd->graphics->clear(color); }
-        //void (*setColorToPattern)(LCDColor* color,LCDBitmap* bitmap, int x, int y);
+        static void Clear(LCDSolidColor color);
+        //void (*setColorToPattern)(LCDColor* color, LCDBitmap* bitmap, int x, int y);
     
-        // if target is NULL, draws in display frame buffer
-        //void (*drawBitmap)(LCDBitmap* bitmap, LCDBitmap* target, LCDBitmap* stencil, int x, int y, LCDBitmapDrawMode mode, LCDBitmapFlip flip, LCDRect clip);
-        //void (*tileBitmap)(LCDBitmap* bitmap, LCDBitmap* target, LCDBitmap* stencil, int x, int y, int width, int height, LCDBitmapDrawMode mode, LCDBitmapFlip flip, LCDRect clip);
-        //void (*drawLine)(LCDBitmap* target, LCDBitmap* stencil, int x1, int y1, int x2, int y2, int width, LCDColor color, LCDLineCapStyle endCapStyle, LCDRect clip);
+        void (*drawLine)(LCDBitmap* target, LCDBitmap* stencil, int x1, int y1, int x2, int y2, int width, LCDColor color, LCDLineCapStyle endCapStyle, LCDRect clip);
+        static void DrawLine(int x1, int y1, int x2, int y2,
+                             int width                        = 1,
+                             LCDColor color                   = kColorBlack,
+                             LCDLineCapStyle endCapStyle      = kLineCapStyleButt,
+                             LCDRect clip                     = LCDMakeRect(0.0f, 0.0f, 0.0f, 0.0f),
+                             std::shared_ptr<Image> target    = nullptr,
+                             std::shared_ptr<Image> stencil   = nullptr);
         //void (*fillTriangle)(LCDBitmap* target, LCDBitmap* stencil, int x1, int y1, int x2, int y2, int x3, int y3, LCDColor color, LCDRect clip);
         //void (*drawRect)(LCDBitmap* target, LCDBitmap* stencil, int x, int y, int width, int height, LCDColor color, LCDRect clip);
         //void (*fillRect)(LCDBitmap* target, LCDBitmap* stencil, int x, int y, int width, int height, LCDColor color, LCDRect clip);
-        void DrawEllipse(LCDBitmap *target, LCDBitmap *stencil, int x, int y, int width, int height, int lineWidth, float startAngle, float endAngle, LCDColor color, LCDRect clip) { _pd->graphics->drawEllipse(target, stencil, x, y, width, height, lineWidth, startAngle, endAngle, color, clip); }
+        static void DrawEllipse(int x, int y, int width, int height, float startAngle, float endAngle,
+                                int                    lineWidth = 1,
+                                LCDColor               color     = kColorBlack,
+                                LCDRect                clip      = LCDMakeRect(0.0f, 0.0f, 0.0f, 0.0f),
+                                std::shared_ptr<Image> target    = nullptr,
+                                std::shared_ptr<Image> stencil   = nullptr);
         //void (*fillEllipse)(LCDBitmap* target, LCDBitmap* stencil, int x, int y, int width, int height, float startAngle, float endAngle, LCDColor color, LCDRect clip);
     
         //int (*checkMaskCollision)(LCDBitmap* bitmap1, int x1, int y1, LCDBitmapFlip flip1, LCDBitmap* bitmap2, int x2, int y2, LCDBitmapFlip flip2, LCDRect rect);
@@ -95,89 +98,129 @@ namespace Playdate {
         //int (*getFontKerning)(LCDFont* font, uint16_t c1, uint16_t c2);
         //int (*getTextWidth)(LCDFont* font, const void* text, size_t len, PDStringEncoding encoding, int tracking);
         //int (*drawText)(LCDFont* font, LCDBitmap* target, LCDBitmap* stencil, const void* text, size_t len, PDStringEncoding encoding, int x, int y, LCDBitmapDrawMode mode, int tracking, LCDRect clip);
-
-    }
+        
+        class Image {
+        public:
+            Image(int width, int height, LCDColor backgroundColor);
+            Image(const char *path, const char **error);
+            Image(Image& bitmap);
+            
+            ~Image();
+            
+            int Width() const { return _width; }
+            int Height() const { return _height; }
+            
+            // TODO: What does this represent? Is this essentially Width/8?
+            int RowBytes() const { return _rowBytes; }
+            
+            // TODO: What does this represent? Should it be a bool?
+            int HasMask() const { return _hasMask; }
+            
+            uint8_t *Data() const { return _data; }
+            
+            void LoadImageAtPath(const char *path, const char **error);
+            
+            void GetImageData(int *width, int *height, int *rowbytes, int *hasmask, uint8_t **data);
+            
+            void Draw(int x, int y,
+                      LCDBitmapDrawMode      mode    = kDrawModeCopy,
+                      LCDBitmapFlip          flip    = kBitmapUnflipped,
+                      LCDRect                clip    = LCDMakeRect(0.0f, 0.0f, 0.0f, 0.0f),
+                      std::shared_ptr<Image> target  = nullptr,
+                      std::shared_ptr<Image> stencil = nullptr);
+            
+            void DrawTiled(int x, int y, int width, int height,
+                           LCDBitmapDrawMode      mode    = kDrawModeCopy,
+                           LCDBitmapFlip          flip    = kBitmapUnflipped,
+                           LCDRect                clip    = LCDMakeRect(0.0f, 0.0f, 0.0f, 0.0f),
+                           std::shared_ptr<Image> target  = nullptr,
+                           std::shared_ptr<Image> stencil = nullptr);
+            
+            LCDBitmap *GetNativeLCDBitmap() { return _bitmap; }
+        private:
+            ::LCDBitmap *_bitmap;
+            int _width;
+            int _height;
+            int _rowBytes; // TODO: Can we calculate this ourselves when needed?
+            int _hasMask;  // TODO: Can this be a bool?
+            uint8_t *_data;
+            
+            void SyncMetadata();
+        };
+    };
 
     // Sprite
     // TODO: Implement
     
     // Display
-    namespace Display {
-        int  Width()  { return _pd->display->getWidth();  }
-        int  Height() { return _pd->display->getHeight(); }
-        void SetInverted(bool inverted) { _pd->display->setInverted(inverted ? 1 : 0); }
-        void SetScaleFactor(int scaleFactor) { _pd->display->setScale(scaleFactor); }
-        void SetMosaic(int x, int y) { _pd->display->setMosaic(x, y); }
-        void SetRefreshRate(float refreshRate) { _pd->display->setRefreshRate(refreshRate); }
+    class Display {
+    public:
+        static int  Width()                           { return _pd->display->getWidth();                    }
+        static int  Height()                          { return _pd->display->getHeight();                   }
+        static void SetInverted(bool inverted)        {        _pd->display->setInverted(inverted ? 1 : 0); }
+        static void SetScaleFactor(int scaleFactor)   {        _pd->display->setScale(scaleFactor);         }
+        static void SetMosaic(int x, int y)           {        _pd->display->setMosaic(x, y);               }
+        static void SetRefreshRate(float refreshRate) {        _pd->display->setRefreshRate(refreshRate);   }
     };
     
     // Audio
-    namespace Audio {
-        // TODO: It would be cool to be able to use a lambda or somenthing here.
-        void AddSource(AudioSourceFunction* callback, void *context, bool stereo) { _pd->audio->addSource(callback, context, stereo ? 1 : 0); }
-        void SetMicCallback(AudioInputFunction* callback, void *context) { _pd->audio->setMicCallback(callback, context); }
-    
-        void Start() { _pd->audio->start(); }
-        void Stop() { _pd->audio->stop(); }
+    class Audio {
+    public:
+        typedef std::function<void(int16_t *leftData, int16_t *rightData, int audioDataLength)> AudioOutputCallback;
+        static void SetSpeakerCallback(AudioOutputCallback speakerCallback) {
+            // Start audio callback, or stop it if microphoneCallback is empty
+            // TODO: How do we remove the source? Do we pass null?
+            _pd->audio->addSource(speakerCallback ? &SpeakerCallback : NULL, NULL, 1);
+            
+            _speakerCallback = speakerCallback;
+            
+            //_pd->audio->addSource(callback, context, stereo ? 1 : 0);
+        }
+        
+        typedef std::function<void(int16_t *audioData, int audioDataLength, int channels)> AudioInputCallback;
+        static void SetMicrophoneCallback(AudioInputCallback microphoneCallback) {
+            // Start audio callback, or stop it if microphoneCallback is empty
+            _pd->audio->setMicCallback(microphoneCallback ? &MicrophoneCallback : NULL, NULL);
+            
+            _microphoneCallback = microphoneCallback;
+        }
+        
+        static void Start() { _pd->audio->start(); }
+        static void Stop()  { _pd->audio->stop();  }
     
         class Sample {
         public:
-            Sample(int length) {
-                _sample = _pd->audio->sample->newAudioSample(length);
-            }
-            // TODO: Switch to std::string?
-            Sample(const char *path) {
-                _sample = _pd->audio->sample->load(path);
-            }
-            ~Sample() {
-                _pd->audio->sample->unload(_sample);
-            }
+            Sample(int length);
+            Sample(const char *path); // TODO: Switch to std::string?
+            ~Sample();
         
             // Load a new file into this sample
-            // TODO: Switch to std::string?
-            void Load(const char *path) {
-                _pd->audio->sample->loadIntoSample(_sample, path);
-            }
+            void Load(const char *path); // TODO: Switch to std::string?
         
             // Length in seconds
-            float Length() {
-                return _pd->audio->sample->getLength(_sample);
-            }
+            float Length() const { return _length; }
             
-            ::AudioSample *GetNativeSample() { return _sample; }
+            ::AudioSample *GetNativeAudioSample() { return _sample; }
         private:
             ::AudioSample *_sample;
+            float          _length;
+            
+            void SyncMetadata();
         };
     
         class SamplePlayer {
         public:
-            SamplePlayer() {
-                _samplePlayer = _pd->audio->sampleplayer->newSamplePlayer();
-            }
-            ~SamplePlayer() {
-                _pd->audio->sampleplayer->unload(_samplePlayer);
-            }
+             SamplePlayer();
+            ~SamplePlayer();
             
-            void SetSample(std::shared_ptr<Sample> sample) {
-                _pd->audio->sampleplayer->setSample(_samplePlayer, sample->GetNativeSample());
-            }
+            void SetSample(std::shared_ptr<Sample> sample);
             
             // TODO: What is the return value of this for? Is it supposed to be a bool?
-            int Play(int loopCount = 1, float rate = 1.0f) {
-                return _pd->audio->sampleplayer->play(_samplePlayer, loopCount, rate);
-            }
+            int  Play(int loopCount = 1, float rate = 1.0f);
+            bool IsPlaying();
+            void Stop();
             
-            bool isPlaying() {
-                return _pd->audio->sampleplayer->isPlaying(_samplePlayer) != 0;
-            }
-            
-            void Stop() {
-                _pd->audio->sampleplayer->stop(_samplePlayer);
-            }
-            
-            void SetVolume(float volume) {
-                _pd->audio->sampleplayer->setVolume(_samplePlayer, volume);
-            }
+            void SetVolume(float volume);
         
             // TODO: Implement
             //void (*setFinishCallback)(SamplePlayer* player, sndCallbackProc callback);
@@ -191,7 +234,13 @@ namespace Playdate {
     
         // TODO: Implement
         //struct playdate_audio_fileplayer* fileplayer;
-    }
+    private:
+        static AudioOutputCallback _speakerCallback;
+        static int SpeakerCallback(void *context, int16_t *leftData, int16_t *rightData, int audioDataLength);
+        
+        static AudioInputCallback _microphoneCallback;
+        static int MicrophoneCallback(void *context, int16_t *audioData, int audioDataLength);
+    };
     
     // Lua
     // TODO: Implement
