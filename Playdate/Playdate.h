@@ -17,6 +17,67 @@ extern PlaydateAPI *_pd;
 void SetPlaydateAPI(PlaydateAPI *pd);
 
 namespace Playdate {
+    template <typename T>
+    struct Vector2 {
+        T x;
+        T y;
+        
+        Vector2() : x(0.0f), y(0.0f) { }
+        Vector2(T x, T y) : x(x), y(y) { }
+        
+        Vector2 operator + (const Vector2 v) const { return Vector2(x + v.x, y + v.y); }
+        Vector2 operator - (const Vector2 v) const { return Vector2(x - v.x, y - v.y); }
+        Vector2 operator * (const T v)       const { return Vector2(x * v, y / v);     }
+        Vector2 operator / (const T v)       const { return Vector2(x / v, y / v);     }
+
+        Vector2& operator += (const Vector2& v) { x += v.x; y += v.y; return *this; }
+        Vector2& operator -= (const Vector2& v) { x -= v.x; y -= v.y; return *this; }
+        Vector2& operator *= (const T v)        { x *= v;   y *= v;   return *this; }
+        Vector2& operator /= (const T v)        { x /= v;   y /= v;   return *this; }
+        
+        operator Vector2<float>() const { return Vector2<float>(x, y); }
+        
+        static Vector2<T> zero;
+        static Vector2<T> one;
+    };
+
+    template <typename T> Vector2<T> Vector2<T>::zero = Vector2<T>(0, 0);
+    template <typename T> Vector2<T> Vector2<T>::one  = Vector2<T>(1, 1);
+
+    template <typename T>
+    struct Vector3 {
+        T x;
+        T y;
+        T z;
+        
+        Vector3() : x(0.0f), y(0.0f), z(0.0f) { }
+        Vector3(float x, float y, float z) : x(x), y(y), z(z) { }
+        
+        Vector3 operator + (const Vector3 v) const { return Vector3(x + v.x, y + v.y, z + v.z); }
+        Vector3 operator - (const Vector3 v) const { return Vector3(x - v.x, y - v.y, z - v.z); }
+        Vector3 operator * (const T v)   const { return Vector3(x * v, y / v, z * v);       }
+        Vector3 operator / (const T v)   const { return Vector3(x / v, y / v, z / v);       }
+
+        Vector3& operator += (const Vector3& v) { x += v.x; y += v.y; z += v.z; return *this; }
+        Vector3& operator -= (const Vector3& v) { x -= v.x; y -= v.y; z -= v.z; return *this; }
+        Vector3& operator *= (const T v)        { x *= v;   y *= v;   z *= v;   return *this; }
+        Vector3& operator /= (const T v)        { x /= v;   y /= v;   z /= v;   return *this; }
+
+        operator Vector3<float>() const { return Vector3<float>(x, y, z); }
+        operator Vector2<T>()     const { return Vector2<T>(x, y); }
+        
+        static Vector3<T> zero;
+        static Vector3<T> one;
+    };
+
+    template <typename T> Vector3<T> Vector3<T>::zero = Vector3<T>(0, 0, 0);
+    template <typename T> Vector3<T> Vector3<T>::one  = Vector3<T>(1, 1, 1);
+
+    typedef Vector2<float> Vector2f;
+    typedef Vector2<int>   Vector2i;
+    typedef Vector3<float> Vector3f;
+    typedef Vector3<int>   Vector3i;
+
     class System {
     public:
         static void *malloc(size_t size);
@@ -26,17 +87,17 @@ namespace Playdate {
         static void SetUpdateCallback(PDCallbackFunction *update, void *userData);
         static void ClearUpdateCallback();
         
-        static void GetButtonState(PDButtons *current, PDButtons *pushed, PDButtons *released);
-        //void (*setPeripheralsEnabled)(PDPeripherals mask);
-        //void (*getAccelerometer)(float* accelerometer, float* magnetometer);
+        static void ButtonState(PDButtons *current, PDButtons *pushed, PDButtons *released);
+        static void SetPeripheralsEnabled(PDPeripherals mask);
+        static Vector3f Accelerometer();
         //float (*getCrankChange)(void);
-        static float GetCrankAngle();
+        static float CrankAngle();
         //void (*logToConsole)(char* fmt, ...);
         //void (*error)(const char* fmt, ...);
         //int (*formatString)(char **ret, const char *fmt, ...);
         //void (*setMenuImage)(LCDBitmap* bitmap, int xOffset);
         //PDLanguage (*getLanguage)(void);
-        //unsigned int (*getCurrentTimeMilliseconds)(void);
+        static unsigned int CurrentSteadyClockTime(); // Measured in milliseconds
         //unsigned int (*getSecondsSinceEpoch)(unsigned int *milliseconds);
         static void DrawFPS(int x, int y);
     };
@@ -107,8 +168,9 @@ namespace Playdate {
             
             ~Image();
             
-            int Width() const { return _width; }
-            int Height() const { return _height; }
+            int      Width()  const { return _width;  }
+            int      Height() const { return _height; }
+            Vector2i Size()   const { return Vector2i(_width, _height); }
             
             // TODO: What does this represent? Is this essentially Width/8?
             int RowBytes() const { return _rowBytes; }
@@ -155,12 +217,13 @@ namespace Playdate {
     // Display
     class Display {
     public:
-        static int  Width()                           { return _pd->display->getWidth();                    }
-        static int  Height()                          { return _pd->display->getHeight();                   }
-        static void SetInverted(bool inverted)        {        _pd->display->setInverted(inverted ? 1 : 0); }
-        static void SetScaleFactor(int scaleFactor)   {        _pd->display->setScale(scaleFactor);         }
-        static void SetMosaic(int x, int y)           {        _pd->display->setMosaic(x, y);               }
-        static void SetRefreshRate(float refreshRate) {        _pd->display->setRefreshRate(refreshRate);   }
+        static int      Width()                           { return _pd->display->getWidth();                    }
+        static int      Height()                          { return _pd->display->getHeight();                   }
+        static Vector2i Size()                            { return Vector2i(Width(), Height());                 }
+        static void SetInverted(bool inverted)            {        _pd->display->setInverted(inverted ? 1 : 0); }
+        static void SetScaleFactor(int scaleFactor)       {        _pd->display->setScale(scaleFactor);         }
+        static void SetMosaic(int x, int y)               {        _pd->display->setMosaic(x, y);               }
+        static void SetRefreshRate(float refreshRate)     {        _pd->display->setRefreshRate(refreshRate);   }
     };
     
     // Audio

@@ -42,8 +42,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.panic.Playdate-Simulator"
-         FilePath = "/Users/max/Documents/PlaydateSDK-build-Release/bin/Playdate Simulator.app">
+         FilePath = "/Users/maxweisel/Documents/PlaydateSDK/bin/Playdate Simulator.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference

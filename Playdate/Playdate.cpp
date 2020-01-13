@@ -64,14 +64,17 @@ int Application::HandleEvent(PDSystemEvent event, uint32_t argument) {
 
 
 // System
-void *System::malloc(size_t size)                                                        { return _pd->system->realloc(NULL, size);                       }
-void *System::realloc(void *pointer, size_t size)                                        { return _pd->system->realloc(pointer, size);                    }
-void  System::free(void *pointer)                                                        {        _pd->system->realloc(pointer, 0);                       }
-void  System::SetUpdateCallback(PDCallbackFunction *update, void *userData)              {        _pd->system->setUpdateCallback(update, userData);       }
-void  System::ClearUpdateCallback()                                                      {        _pd->system->setUpdateCallback(NULL, NULL);             }
-void  System::GetButtonState(PDButtons *current, PDButtons *pushed, PDButtons *released) {        _pd->system->getButtonState(current, pushed, released); }
-float System::GetCrankAngle()                                                            { return _pd->system->getCrankAngle();                           }
-void  System::DrawFPS(int x, int y)                                                      {        _pd->system->drawFPS(x, y);                             }
+void         *System::malloc(size_t size)                                                        { return _pd->system->realloc(NULL, size);                               }
+void         *System::realloc(void *pointer, size_t size)                                        { return _pd->system->realloc(pointer, size);                            }
+void          System::free(void *pointer)                                                        {        _pd->system->realloc(pointer, 0);                               }
+void          System::SetUpdateCallback(PDCallbackFunction *update, void *userData)              {        _pd->system->setUpdateCallback(update, userData);               }
+void          System::ClearUpdateCallback()                                                      {        _pd->system->setUpdateCallback(NULL, NULL);                     }
+void          System::ButtonState(PDButtons *current, PDButtons *pushed, PDButtons *released)    {        _pd->system->getButtonState(current, pushed, released);         }
+void          System::SetPeripheralsEnabled(PDPeripherals mask)                                  {        _pd->system->setPeripheralsEnabled(mask);                       }
+Vector3f      System::Accelerometer()                                                            { Vector3f v; _pd->system->getAccelerometer(&v.x, &v.y, &v.z); return v; }
+float         System::CrankAngle()                                                               { return _pd->system->getCrankAngle();                                   }
+unsigned int  System::CurrentSteadyClockTime()                                                   { return _pd->system->getCurrentTimeMilliseconds();                      }
+void          System::DrawFPS(int x, int y)                                                      {        _pd->system->drawFPS(x, y);                                     }
 
 
 // Graphics

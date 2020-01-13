@@ -24,11 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		501D773323909E7A0089B7C5 /* PlaydateHD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaydateHD.h; sourceTree = "<group>"; };
 		5026A46D237A25C9008DE1C3 /* CopyCat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CopyCat.h; sourceTree = "<group>"; };
 		502B7370237BA431006E5AB6 /* Labyrinth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Labyrinth.h; sourceTree = "<group>"; };
 		50642A0C2373A19200A3AE8F /* TestsApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestsApplication.h; sourceTree = "<group>"; };
 		50642A0F2373A9A000A3AE8F /* Playdate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Playdate.h; sourceTree = "<group>"; };
 		50642A112374F6D500A3AE8F /* Phonograph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Phonograph.h; sourceTree = "<group>"; };
+		50BDBC4B238224A200EDDDDA /* SymbolFinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SymbolFinder.h; sourceTree = "<group>"; };
 		50CD52B3235D0FC900B6B51D /* libPlaydateNative Simulator.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libPlaydateNative Simulator.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CD52BC235D107A00B6B51D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		50CD52C0235D109200B6B51D /* mini3d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mini3d.c; sourceTree = "<group>"; };
@@ -46,6 +48,10 @@
 		50CD52DC235D12BF00B6B51D /* SampleApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleApplication.h; sourceTree = "<group>"; };
 		50CD52EE235D1C0400B6B51D /* MusicBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicBox.h; sourceTree = "<group>"; };
 		50D68E96235FC59B0008C5C1 /* Playdate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Playdate.cpp; sourceTree = "<group>"; };
+		A470861D239D9CF70095428E /* Dithering.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dithering.h; sourceTree = "<group>"; };
+		A470861F239D9E410095428E /* CrankDrawing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrankDrawing.h; sourceTree = "<group>"; };
+		A497BA8523CBE3A400B6CFB2 /* Grayscale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grayscale.h; sourceTree = "<group>"; };
+		A4CA454D23C42A8200B4A4B0 /* Snake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snake.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,14 @@
 			path = Phonograph;
 			sourceTree = "<group>";
 		};
+		50BDBC4A2382248700EDDDDA /* Symbol Finder */ = {
+			isa = PBXGroup;
+			children = (
+				50BDBC4B238224A200EDDDDA /* SymbolFinder.h */,
+			);
+			path = "Symbol Finder";
+			sourceTree = "<group>";
+		};
 		50CD52AA235D0FC900B6B51D = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +161,11 @@
 				50642A102374F6B800A3AE8F /* Phonograph */,
 				5026A46C237A25A5008DE1C3 /* Copy Cat */,
 				502B736E237BA3EE006E5AB6 /* Labyrinth */,
+				50BDBC4A2382248700EDDDDA /* Symbol Finder */,
+				A470861C239D9CDE0095428E /* Dithering */,
+				A470861E239D9D5A0095428E /* Crank Drawing */,
+				A4CA454C23C42A5F00B4A4B0 /* Snake */,
+				A497BA8423CBE37500B6CFB2 /* Grayscale */,
 			);
 			path = Experiments;
 			sourceTree = "<group>";
@@ -173,6 +192,39 @@
 				50CD52EE235D1C0400B6B51D /* MusicBox.h */,
 			);
 			path = "Music Box";
+			sourceTree = "<group>";
+		};
+		A470861C239D9CDE0095428E /* Dithering */ = {
+			isa = PBXGroup;
+			children = (
+				A470861D239D9CF70095428E /* Dithering.h */,
+				501D773323909E7A0089B7C5 /* PlaydateHD.h */,
+			);
+			path = Dithering;
+			sourceTree = "<group>";
+		};
+		A470861E239D9D5A0095428E /* Crank Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				A470861F239D9E410095428E /* CrankDrawing.h */,
+			);
+			path = "Crank Drawing";
+			sourceTree = "<group>";
+		};
+		A497BA8423CBE37500B6CFB2 /* Grayscale */ = {
+			isa = PBXGroup;
+			children = (
+				A497BA8523CBE3A400B6CFB2 /* Grayscale.h */,
+			);
+			path = Grayscale;
+			sourceTree = "<group>";
+		};
+		A4CA454C23C42A5F00B4A4B0 /* Snake */ = {
+			isa = PBXGroup;
+			children = (
+				A4CA454D23C42A8200B4A4B0 /* Snake.h */,
+			);
+			path = Snake;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,7 +392,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PLAYDATE_C_API_PATH = "/Users/max/Documents/PlaydateSDK-build-Release/C_API/";
+				PLAYDATE_C_API_PATH = /Users/max/Documents/PlaydateSDK/C_API/;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -393,7 +445,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PLAYDATE_C_API_PATH = "/Users/max/Documents/PlaydateSDK-build-Release/C_API/";
+				PLAYDATE_C_API_PATH = /Users/max/Documents/PlaydateSDK/C_API/;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -406,6 +458,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				PLAYDATE_C_API_PATH = /Users/maxweisel/Documents/PlaydateSDK/C_API/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -419,6 +472,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				PLAYDATE_C_API_PATH = /Users/maxweisel/Documents/PlaydateSDK/C_API/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

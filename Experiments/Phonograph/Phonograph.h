@@ -22,7 +22,7 @@ using namespace Playdate;
 
 class Phonograph : public Application {
 public:
-    Phonograph() : _recording(false), _cursor(0), _crankAngle(System::GetCrankAngle()), _crankSpeed(0.0f) {
+    Phonograph() : _recording(false), _cursor(0), _crankAngle(System::CrankAngle()), _crankSpeed(0.0f) {
         // Clear the buffer
         memset(_audioBuffer, 0, BUFFER_SIZE*sizeof(int16_t));
         
@@ -84,7 +84,7 @@ public:
         Graphics::Clear(kColorWhite);
         
         PDButtons current, pressed, released;
-        System::GetButtonState(&current, &pressed, &released);
+        System::ButtonState(&current, &pressed, &released);
         
         if ((pressed & kButtonA) == kButtonA)
             _recording = !_recording;
@@ -93,7 +93,7 @@ public:
             System::DrawFPS(10, 10);
         
         // Calculate crank delta since the last frame
-        float crankAngle = System::GetCrankAngle();
+        float crankAngle = System::CrankAngle();
         float delta = crankAngle-_crankAngle;
         while (delta >  180.0f) delta -= 360.0f;
         while (delta < -180.0f) delta += 360.0f;

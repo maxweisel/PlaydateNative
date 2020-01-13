@@ -27,11 +27,21 @@ public:
             
             // Measure volume level
             float volumeLevel = CalculateBufferAudioLevel(audioData, audioDataLength, channels);
-            _lastFrameAudioLevel = volumeLevel;
-            if (!_volumeGate && _audioLevel >= _threshold*1.2f) {
+            float threshold = 0.2f;
+            
+            bool belowThreshold = volumeLevel <= 0.2f;
+            bool aboveThreshold = !belowThreshold;
+            bool currentlyRecording = _volumeGate;
+            bool hasBeenBelowThresholdForDelay = System::CurrentSteadyClockTime() - _lastAudioTime >= 500;
+            
+            if (aboveThreshold) _lastAudioTime = System::CurrentSteadyClockTime();
+            
+            if (!currentlyRecording && aboveThreshold) {
+                // Start recording if we went above the threshold
                 _volumeGate = true;
                 _recordStartCursor = _recordEndCursor;
-            } else if (_volumeGate && _audioLevel < _threshold*1.2f) {
+            }
+            if (currentlyRecording && belowThreshold && hasBeenBelowThresholdForDelay) {
                 StartPlayback();
             }
             
@@ -128,7 +138,7 @@ public:
         Graphics::Clear(kColorWhite);
         
         PDButtons current, pressed, released;
-        System::GetButtonState(&current, &pressed, &released);
+        System::ButtonState(&current, &pressed, &released);
         
         if ((pressed & kButtonA) == kButtonA) {
             if (_state == Recording) {
@@ -138,7 +148,7 @@ public:
             }
         }
         
-        float crankAngle = System::GetCrankAngle();
+        float crankAngle = System::CrankAngle();
         _pitch = crankAngle / 360.0f + 0.5f;
         
         // Draw face
@@ -155,11 +165,11 @@ public:
             _image.Draw(0, 0);
         
         // Draw debug Line
-        _audioLevel = Lerp(_audioLevel, _lastFrameAudioLevel, _lastFrameAudioLevel > _audioLevel ? 0.1f : 0.1f);
-        _threshold  = Lerp(_threshold, _lastFrameAudioLevel, _lastFrameAudioLevel > _threshold ? 0.008f : 0.008f);
+        //_audioLevel = Lerp(_audioLevel, _lastFrameAudioLevel, _lastFrameAudioLevel > _audioLevel ? 0.1f : 0.1f);
+        //_threshold  = Lerp(_threshold, _lastFrameAudioLevel, _lastFrameAudioLevel > _threshold ? 0.008f : 0.008f);
         Graphics::DrawLine(200, 20, 200, 21.0f + _lastFrameAudioLevel * 200.0f, 20);
-        Graphics::DrawLine(220, 20, 220, 21.0f +  _audioLevel * 200.0f, 20);
-        Graphics::DrawLine(240, 20, 240, 21.0f +  _threshold*1.2f * 200.0f, 20);
+        //Graphics::DrawLine(220, 20, 220, 21.0f +  _audioLevel * 200.0f, 20);
+        //Graphics::DrawLine(240, 20, 240, 21.0f +  _threshold*1.2f * 200.0f, 20);
     }
     
     // Treat a buffer as a cirular buffer by wrapping the index if it goes off either end of the buffer
@@ -243,5 +253,7 @@ private:
     float _threshold = 0.2f;
     float _lastFrameAudioLevel = 0.0f;
     float _audioLevel = 0.0f;
+    unsigned int _lastAudioTime = 0;
+    
     Graphics::Image _image;
 };

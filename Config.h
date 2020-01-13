@@ -32,8 +32,26 @@
 //#include "Experiments/Phonograph/Phonograph.h"
 //#define APPLICATION_CLASS Phonograph
 
-#include "Experiments/Copy Cat/CopyCat.h"
-#define APPLICATION_CLASS CopyCat
+//#include "Experiments/Copy Cat/CopyCat.h"
+//#define APPLICATION_CLASS CopyCat
 
 //#include "Experiments/Labyrinth/Labyrinth.h"
 //#define APPLICATION_CLASS Labyrinth
+
+//#include "Experiments/Symbol Finder/SymbolFinder.h"
+//#define APPLICATION_CLASS SymbolFinder
+
+//#include "Experiments/Dithering/Dithering.h"
+//#define APPLICATION_CLASS Dithering
+
+//#include "Experiments/Dithering/Dithering.h"
+//#define APPLICATION_CLASS Dithering
+
+//#include "Experiments/Crank Drawing/CrankDrawing.h"
+//#define APPLICATION_CLASS CrankDrawing
+
+//#include "Experiments/Snake/Snake.h"
+//#define APPLICATION_CLASS Snake
+
+#include "Experiments/Grayscale/Grayscale.h"
+#define APPLICATION_CLASS Grayscale

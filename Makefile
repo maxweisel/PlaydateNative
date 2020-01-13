@@ -11,7 +11,7 @@ SDK = $(shell egrep '^\s*SDKRoot' ~/.Playdate/config | head -n 1 | cut -c9-)
 # ex: VPATH += src1:src2
 ######
 
-VPATH += :./:./Playdate
+VPATH += :./Playdate
 
 # List C source files here
 SRC = main.cpp Playdate.cpp
