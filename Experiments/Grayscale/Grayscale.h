@@ -17,6 +17,8 @@ class Grayscale : public Application {
 public:
     Grayscale() {
         Graphics::Clear(kColorWhite);
+        
+        printf("%i %i\n", Display::Size().x, Display::Size().y);
     }
     
     ~Grayscale() {
@@ -27,13 +29,19 @@ public:
     void Update() override {
         // Update
         
+        // Get buttons
+        PDButtons current, pressed, released;
+        System::ButtonState(&current, &pressed, &released);
+        
+        int slowmo = ((current & kButtonDown) == kButtonDown) ? 4 : 0;
+        
         int brightness = floorf(System::CrankAngle()/360.0f*5.0f); // 1 - 5
         
         uint8_t *displayBuffer = Graphics::GetFrame();
         for (int i = 0; i < LCD_ROWS; i++) {
             uint8_t shadeValue = 0x0;
             
-            int frameNumber = (_frameNumber + i) % 4;
+            int frameNumber = ((_frameNumber >> slowmo) + i) % 4;
             
             if (brightness < 1) {
                 shadeValue = 0x0;
@@ -102,5 +110,3 @@ public:
 private:
     int _frameNumber = 0;
 };
-
-

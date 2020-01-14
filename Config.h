@@ -53,5 +53,5 @@
 //#include "Experiments/Snake/Snake.h"
 //#define APPLICATION_CLASS Snake
 
-#include "Experiments/Grayscale/Grayscale.h"
-#define APPLICATION_CLASS Grayscale
+#include "Experiments/Grayscale/GrayscaleSprite.h"
+#define APPLICATION_CLASS GrayscaleSprite

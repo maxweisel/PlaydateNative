@@ -1,0 +1,9 @@
+name=GrayscaleSprite
+author=Max Weisel
+description=Max's Native Experiments
+bundleID=com.maxweisel.grayscalenative
+imagePath=
+pdxversion=6
+buildtime=632294543
+inputPath=/Users/maxweisel/Dropbox/Projects/52 Playdate Experiments/3 PlaydateNative/Source
+sdkPath=/Users/maxweisel/Documents/PlaydateSDK

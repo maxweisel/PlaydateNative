@@ -36,7 +36,7 @@ public:
         }
     }
     
-    // Round width (in bis) up to nearest multiple of 32 bits. Return as number of bytes.
+    // Round width (in bits) up to nearest multiple of 32 bits. Return as number of bytes.
     static int CalculateRowStride(int width) {
         int rowStrideBits  = (width + 32 - 1) / 32 * 32;
         int rowStrideBytes = rowStrideBits / 8;

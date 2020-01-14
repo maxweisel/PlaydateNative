@@ -52,6 +52,7 @@
 		A470861F239D9E410095428E /* CrankDrawing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrankDrawing.h; sourceTree = "<group>"; };
 		A497BA8523CBE3A400B6CFB2 /* Grayscale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grayscale.h; sourceTree = "<group>"; };
 		A4CA454D23C42A8200B4A4B0 /* Snake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snake.h; sourceTree = "<group>"; };
+		A4E4D98E23CD77E700D92162 /* GrayscaleSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrayscaleSprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				A497BA8523CBE3A400B6CFB2 /* Grayscale.h */,
+				A4E4D98E23CD77E700D92162 /* GrayscaleSprite.h */,
 			);
 			path = Grayscale;
 			sourceTree = "<group>";

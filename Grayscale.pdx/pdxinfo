@@ -1,0 +1,9 @@
+name=Grayscale
+author=Max Weisel
+description=Max's Native Experiments
+bundleID=com.maxweisel.playdatenative
+imagePath=
+pdxversion=6
+buildtime=632259698
+inputPath=/Users/maxweisel/Dropbox/Projects/52 Playdate Experiments/3 PlaydateNative/Source
+sdkPath=/Users/maxweisel/Documents/PlaydateSDK
